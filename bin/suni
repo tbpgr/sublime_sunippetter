@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+require 'sublime_sunippetter'
+SublimeSunippetter::Core.new.execute
