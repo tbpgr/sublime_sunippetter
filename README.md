@@ -2,6 +2,20 @@
 
 SublimeSunippetter is generate Sublime Text2 simple sunippet from Sunippetfile DSL.
 
+2013/11/20 ver 0.01 is still simple. Only single line space separating sunippet is supported.
+
+## Purpose
+
+SublimeSunippetter can use following situations.
+
+* You create dsl for team.
+
+* You create some library for team.
+
+* You create some open-source library.
+
+If you provide sunippets for your users, they appreciate your kindness ...maybe.
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -66,6 +80,10 @@ And
     </snippet>
 
 in 'C:/Users/user_name/AppData/Roaming/Sublime Text 2/Packages/User' directory.
+
+## Use Generated Sunippet
+
+<img src="./doc_image/sublime_sunippetter.gif" />
 
 ## Contributing
 
