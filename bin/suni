@@ -1,4 +1,29 @@
 #!/usr/bin/env ruby
 
 require 'sublime_sunippetter'
-SublimeSunippetter::Core.new.execute
+require "thor"
+
+module SublimeSunippetter
+  #= SublimeSunippetter CLI
+  class CLI < Thor
+    class_option :help, :type => :boolean, :aliases => '-h', :desc => 'help message.'
+    class_option :version, :type => :boolean, :desc => 'version'
+    default_task :execute
+
+    desc "execute", "generate Sublime Text2 snippet"
+    def execute
+      SublimeSunippetter::Core.new.generate_sunippets
+    end
+
+    desc "init", "generate Sunippetdefine"
+    def init
+      SublimeSunippetter::Core.new.init
+    end
+
+    desc "version", "version"
+    def version
+      p SublimeSunippetter::VERSION
+    end
+  end
+end
+SublimeSunippetter::CLI.start

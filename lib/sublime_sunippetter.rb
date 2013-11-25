@@ -51,20 +51,6 @@ module SublimeSunippetter
       end
     end
 
-    #== for command prompt.
-    # if you execute suni(no-option), generate sublime text2 sunippet.
-    #
-    # if you execute suni init, generate Sunippetdefine.
-    def execute
-      sunippet = SublimeSunippetter::Core.new
-
-      if $*[0] == "init"
-        sunippet.init
-      else
-        sunippet.generate_sunippets
-      end
-    end
-
     private
     def read_sunippetdefine
       unless File.exists? "./#{DEFINE_FILE}"
