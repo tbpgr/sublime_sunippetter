@@ -38,18 +38,20 @@ First, you create Sunippetfile manually or following command.
 
 Second, you have to edit Sunippetfile. 
 
-    # encoding: utf-8
+~~~ruby
+# encoding: utf-8
 
-    # set output path. default=current directory
-    output_path 'C:/Users/user_name/AppData/Roaming/Sublime Text 2/Packages/User'
+# set output path. default=current directory
+output_path 'C:/Users/user_name/AppData/Roaming/Sublime Text 2/Packages/User'
 
-    # set sunippet scope. default=source.ruby
-    scope "source.ruby"
+# set sunippet scope. default=source.ruby
+scope "source.ruby"
 
-    # if two args method
-    add :hoge, :args1, :args2
-    # if no args method
-    add :hige
+# if two args method
+add :hoge, :args1, :args2
+# if no args method
+add :hige
+~~~
 
 Third, you have to do is execute command suni.
 
@@ -59,6 +61,7 @@ Result => generate hoge.sublime-snippet, hige.sublime-snippet
 
 This Sample Sunppet Contens are ...
 
+~~~xml
     <snippet>
       <content><![CDATA[
     hoge ${1:args1}, ${2:args2}
@@ -67,9 +70,11 @@ This Sample Sunppet Contens are ...
       <scope>source.ruby</scope>
       <description>hoge method</description>
     </snippet>
+~~~
 
 And
 
+~~~xml
     <snippet>
       <content><![CDATA[
     hige
@@ -78,6 +83,7 @@ And
       <scope>source.ruby</scope>
       <description>hige method</description>
     </snippet>
+~~~
 
 in 'C:/Users/user_name/AppData/Roaming/Sublime Text 2/Packages/User' directory.
 
