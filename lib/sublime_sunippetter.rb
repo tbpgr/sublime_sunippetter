@@ -47,7 +47,7 @@ module SublimeSunippetter
       dsl.instance_eval sunippet_define
       dsl.target_methods.each do |m|
         snippet = get_snippet(m.method_name , get_args_names(m) , dsl._scope)
-        File.open("#{dsl._output_path}/#{m.method_name}.sublime-snippet", "w") {|f|f.puts snippet}
+        File.open("#{dsl._output_path}/#{m.method_name.to_s.tr('?', '')}.sublime-snippet", "w") {|f|f.puts snippet}
       end
     end
 

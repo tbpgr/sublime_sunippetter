@@ -91,6 +91,10 @@ in 'C:/Users/user_name/AppData/Roaming/Sublime Text 2/Packages/User' directory.
 
 <img src="./doc_image/sublime_sunippetter.gif" />
 
+## History
+* version 0.0.3 : question can use. for ex 'blank?'.
+* version 0.0.1 : first release.
+
 ## Contributing
 
 1. Fork it

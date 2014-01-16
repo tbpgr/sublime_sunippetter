@@ -28,7 +28,7 @@ describe SublimeSunippetter::Core do
 output_path "#{File.absolute_path('.')}"
 scope "source.java"
 add :hoge, :args1, :args2
-add :hige
+add :hige?
   EOS
 
   cases_generate_sunippets = [
