@@ -29,13 +29,16 @@ output_path "#{File.absolute_path('.')}"
 scope "source.java"
 add :hoge, :args1, :args2
 add :hige?
+add :hoge1, "block@b"
+add :hoge2, "block@d"
+add :hoge3, :args1, :args2, "block@b"
   EOS
 
   cases_generate_sunippets = [
     {
     case_no: 1,
     sunippetdefine: GENERATE_SUNIPPETS_CASE,
-    output_file_names: ["hoge.sublime-snippet", "hige.sublime-snippet"],
+    output_file_names: ["hoge.sublime-snippet", "hige.sublime-snippet", "hoge1.sublime-snippet", "hoge2.sublime-snippet", "hoge3.sublime-snippet"],
     }
   ]
 
