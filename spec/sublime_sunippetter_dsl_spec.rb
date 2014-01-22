@@ -1,6 +1,7 @@
 # encoding: utf-8
 require_relative '../lib/sublime_sunippetter'
 require 'spec_helper'
+require 'target_method'
 
 describe SublimeSunippetter::Dsl do
   cases_add = [

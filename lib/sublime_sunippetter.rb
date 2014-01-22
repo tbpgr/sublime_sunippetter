@@ -1,6 +1,7 @@
 # encoding: utf-8
 require 'sublime_sunippetter/version'
 require 'erb'
+require 'sublime_sunippetter_dsl'
 
 module SublimeSunippetter
   # SublimeSunippetter Core
@@ -98,67 +99,6 @@ end
     def get_brace_block(method)
       return '' unless method.has_brace_block
       ' { |${9:args}|${0:block} }'
-    end
-  end
-
-  # TargetMethod. this is method information container
-  class TargetMethod
-    attr_accessor :method_name, :args, :has_do_block, :has_brace_block
-
-    # generate sublime text2 sunippets from Sunippetdefine
-    def initialize(&block)
-      instance_eval do
-        block.call(self)
-      end
-    end
-  end
-
-  # Dsl. this is dsl for Sunippetdefine.
-  class Dsl
-    attr_accessor :target_methods, :_scope, :_output_path
-
-    # init default values
-    def initialize
-      @target_methods = []
-      @_scope = 'source.ruby'
-      @_output_path = './'
-    end
-
-    # add sunippet information
-    def add(method_name, *args)
-      return if method_name.nil?
-      return if method_name.empty?
-      return if args.each.include?(nil)
-      return if args.each.include?('')
-      has_do_block = args.include?('block@d')
-      has_brace_block = args.include?('block@b')
-      args = delete_block_args args
-      @target_methods << TargetMethod.new do |t|
-        t.method_name = method_name
-        t.args = args
-        t.has_do_block = has_do_block
-        t.has_brace_block = has_brace_block
-      end
-    end
-
-    # set sunippet scope
-    def scope(_scope)
-      return if _scope.nil?
-      return if _scope.empty?
-      @_scope = _scope
-    end
-
-    # set sunippet output path
-    def output_path(_output_path)
-      return if _output_path.nil?
-      return if _output_path.empty?
-      @_output_path = _output_path
-    end
-
-    private
-
-    def delete_block_args(args)
-      args - ['block@b', 'block@d']
     end
   end
 
