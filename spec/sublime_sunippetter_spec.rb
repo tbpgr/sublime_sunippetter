@@ -19,7 +19,7 @@ describe SublimeSunippetter::Core do
       sunippet.init
 
       # then
-      actual = File.open("#{SublimeSunippetter::Core::DEFINE_FILE}") { |f|f.read }
+      actual = File.read("#{SublimeSunippetter::Core::DEFINE_FILE}")
       expect(actual).to eq(c[:expected])
     end
   end

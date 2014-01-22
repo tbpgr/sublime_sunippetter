@@ -16,12 +16,14 @@ module SublimeSunippetter
     # add sunippet information
     def add(method_name, *args)
       return if has_error?(method_name, *args)
+      has_do_block = args.include?('block@d')
+      has_brace_block = args.include?('block@b')
       args = delete_block_args args
       @target_methods << TargetMethod.new do |t|
         t.method_name = method_name
         t.args = args
-        t.has_do_block = args.include?('block@d')
-        t.has_brace_block = args.include?('block@b')
+        t.has_do_block = has_do_block
+        t.has_brace_block = has_brace_block
       end
     end
 
