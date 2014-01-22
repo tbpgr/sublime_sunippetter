@@ -1,6 +1,6 @@
 # encoding: utf-8
-require_relative "../lib/sublime_sunippetter"
-require "spec_helper"
+require_relative '../lib/sublime_sunippetter'
+require 'spec_helper'
 
 describe SublimeSunippetter::Dsl do
   cases_add = [
@@ -15,30 +15,30 @@ describe SublimeSunippetter::Dsl do
     },
     {
       case_no: 2,
-      method_names:nil,
+      method_names: nil,
       params: [:hoge, :hige, :hage],
       expecteds: nil,
       invalid?: true
     },
     {
       case_no: 3,
-      method_names:"",
+      method_names: '',
       params: [:hoge, :hige, :hage],
-      expecteds: "",
+      expecteds: '',
       invalid?: true
     },
     {
       case_no: 4,
       method_names: :hoge,
       params: [:hoge, nil, :hage],
-      expecteds: "",
+      expecteds: '',
       invalid?: true
     },
     {
       case_no: 5,
       method_names: :hoge,
-      params: [:hoge, "", :hage],
-      expecteds: "",
+      params: [:hoge, '', :hage],
+      expecteds: '',
       invalid?: true
     },
   ]
@@ -69,18 +69,18 @@ describe SublimeSunippetter::Dsl do
   cases_scope = [
     {
       case_no: 1,
-      scope:"source.java",
-      expected: "source.java"
+      scope: 'source.java',
+      expected: 'source.java'
     },
     {
       case_no: 2,
-      scope:nil,
-      expected: "source.ruby"
+      scope: nil,
+      expected: 'source.ruby'
     },
     {
       case_no: 3,
-      scope:"",
-      expected: "source.ruby"
+      scope: '',
+      expected: 'source.ruby'
     },
   ]
 
@@ -100,18 +100,18 @@ describe SublimeSunippetter::Dsl do
   cases_output_path = [
     {
       case_no: 1,
-      output_path:"C:\\",
-      expected: "C:\\"
+      output_path: 'C:\\',
+      expected: 'C:\\'
     },
     {
       case_no: 2,
-      output_path:nil,
-      expected: "./"
+      output_path: nil,
+      expected: './'
     },
     {
       case_no: 3,
-      output_path:"",
-      expected: "./"
+      output_path: '',
+      expected: './'
     },
   ]
 

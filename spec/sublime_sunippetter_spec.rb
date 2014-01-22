@@ -1,6 +1,6 @@
 # encoding: utf-8
-require_relative "../lib/sublime_sunippetter"
-require "spec_helper"
+require_relative '../lib/sublime_sunippetter'
+require 'spec_helper'
 
 describe SublimeSunippetter::Core do
   cases_init = [
@@ -19,12 +19,12 @@ describe SublimeSunippetter::Core do
       sunippet.init
 
       # then
-      actual = File.open("#{SublimeSunippetter::Core::DEFINE_FILE}") {|f|f.read}
+      actual = File.open("#{SublimeSunippetter::Core::DEFINE_FILE}") { |f|f.read }
       expect(actual).to eq(c[:expected])
     end
   end
 
-  GENERATE_SUNIPPETS_CASE =<<-EOS
+  GENERATE_SUNIPPETS_CASE = <<-EOS
 output_path "#{File.absolute_path('.')}"
 scope "source.java"
 add :hoge, :args1, :args2
@@ -38,15 +38,15 @@ add :hoge3, :args1, :args2, "block@b"
     {
     case_no: 1,
     sunippetdefine: GENERATE_SUNIPPETS_CASE,
-    output_file_names: ["hoge.sublime-snippet", "hige.sublime-snippet", "hoge1.sublime-snippet", "hoge2.sublime-snippet", "hoge3.sublime-snippet"],
+    output_file_names: ['hoge.sublime-snippet', 'hige.sublime-snippet', 'hoge1.sublime-snippet', 'hoge2.sublime-snippet', 'hoge3.sublime-snippet'],
     }
   ]
 
   context do
     before do
-      File.open("./#{SublimeSunippetter::Core::DEFINE_FILE}", "w") {|f|f.puts GENERATE_SUNIPPETS_CASE}
+      File.open("./#{SublimeSunippetter::Core::DEFINE_FILE}", 'w') { |f|f.puts GENERATE_SUNIPPETS_CASE }
     end
-    
+
     cases_generate_sunippets.each do |c|
 
       it "#generate_sunippets case_no=#{c[:case_no]}" do
