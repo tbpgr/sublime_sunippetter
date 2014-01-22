@@ -73,13 +73,11 @@ module SublimeSunippetter
     end
 
     def get_snippet(method_name, args_names, do_block, brace_block, scope)
-      erb = ERB.new(SUNIPPET_TEMPLATE)
-      snippet = erb.result(binding)
-      snippet
+      ERB.new(SUNIPPET_TEMPLATE).result(binding)
     end
 
-    def get_args_names(_method)
-      args = _method.args
+    def get_args_names(method)
+      args = method.args
       args_names = ' '
       args.each_with_index do |a, i|
         args_names << "${#{i + 1}:#{a}}, "
