@@ -32,13 +32,22 @@ add :hige?
 add :hoge1, "block@b"
 add :hoge2, "block@d"
 add :hoge3, :args1, :args2, "block@b"
+add_requires 'hoge', 'hige'
   EOS
 
   cases_generate_sunippets = [
     {
-    case_no: 1,
-    sunippetdefine: GENERATE_SUNIPPETS_CASE,
-    output_file_names: ['hoge.sublime-snippet', 'hige.sublime-snippet', 'hoge1.sublime-snippet', 'hoge2.sublime-snippet', 'hoge3.sublime-snippet'],
+      case_no: 1,
+      sunippetdefine: GENERATE_SUNIPPETS_CASE,
+      output_file_names: [
+        'hoge.sublime-snippet',
+        'hige.sublime-snippet',
+        'hoge1.sublime-snippet',
+        'hoge2.sublime-snippet',
+        'hoge3.sublime-snippet',
+        'require_hoge.sublime-snippet',
+        'require_hige.sublime-snippet',
+      ],
     }
   ]
 

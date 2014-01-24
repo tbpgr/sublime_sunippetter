@@ -67,6 +67,28 @@ describe SublimeSunippetter::Dsl do
     end
   end
 
+  cases_add_requires = [
+    {
+      case_no: 1,
+      require_files: ['hoge', 'hige'],
+      expecteds: ['hoge', 'hige']
+    },
+  ]
+
+  cases_add_requires.each do |c|
+    it "#add_requires case_no=#{c[:case_no]} add require_files=#{c[:require_files]}" do
+      # given
+      dsl = SublimeSunippetter::Dsl.new
+
+      # when
+      dsl.add_requires c[:require_files][0], c[:require_files][1]
+      actual = dsl.requires
+
+      # then
+      expect(actual).to eq(c[:expecteds])
+    end
+  end
+
   cases_scope = [
     {
       case_no: 1,

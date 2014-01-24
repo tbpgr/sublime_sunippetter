@@ -27,6 +27,9 @@ module SublimeSunippetter
 # add :hoge1, :args1, :args2, "block@d"
 # if two args method and brace-block
 # add :hoge2, :args1, :args2, "block@b"
+
+# require snippet
+# add_requires 'file1', 'file2'
     EOS
 
     # sublime sunippet template
@@ -38,6 +41,18 @@ module SublimeSunippetter
   <tabTrigger><%= method_name %></tabTrigger>
   <scope><%= scope%></scope>
   <description><%= method_name %> method</description>
+</snippet>
+    EOS
+
+    # sublime sunippet require template
+    REQUIRE_SUNIPPET_TEMPLATE = <<-EOS
+<snippet>
+  <content><![CDATA[
+require '<%= require_file %>'
+]]></content>
+  <tabTrigger>require <%= require_file %></tabTrigger>
+  <scope><%= scope%></scope>
+  <description>require <%= require_file %></description>
 </snippet>
     EOS
 
@@ -61,6 +76,11 @@ module SublimeSunippetter
         )
         filename = "#{dsl._output_path}/#{m.method_name.to_s.tr('?', '')}.sublime-snippet"
         File.open(filename, 'w:UTF-8') { |f|f.puts snippet }
+      end
+
+      dsl.requires.each do |r|
+        require_snippet = get_require_snippet(r, dsl._scope)
+        File.open("require_#{r}.sublime-snippet", 'w:UTF-8') { |f|f.puts require_snippet }
       end
     end
 
@@ -95,6 +115,10 @@ end
     def get_brace_block(method)
       return '' unless method.has_brace_block
       ' { |${9:args}|${0:block} }'
+    end
+
+    def get_require_snippet(require_file, scope)
+      ERB.new(REQUIRE_SUNIPPET_TEMPLATE).result(binding)
     end
   end
 

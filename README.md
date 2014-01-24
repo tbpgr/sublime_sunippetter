@@ -53,6 +53,8 @@ add :hige
 add :hoge1, :args1, :args2, "block@d"
 # if two args method and brace-block
 add :hoge2, :args1, :args2, "block@b"
+# requires
+add_requires 'hoge', 'hige'
 ~~~
 
 Third, you have to do is execute command 'suni'.
@@ -115,6 +117,32 @@ hoge2 ${1:args1}, ${2:args2} { |${9:args}|${0:block} }
 </snippet>
 ~~~
 
+And
+
+~~~xml
+<snippet>
+  <content><![CDATA[
+require 'hoge'
+]]></content>
+  <tabTrigger>require hoge</tabTrigger>
+  <scope>source.java</scope>
+  <description>require hoge</description>
+</snippet>
+~~~
+
+And
+
+~~~xml
+<snippet>
+  <content><![CDATA[
+require 'hige'
+]]></content>
+  <tabTrigger>require hige</tabTrigger>
+  <scope>source.ruby</scope>
+  <description>require hige</description>
+</snippet>
+~~~
+
 in 'C:/Users/user_name/AppData/Roaming/Sublime Text 2/Packages/User' directory.
 
 ## Use Generated Sunippet
@@ -122,6 +150,7 @@ in 'C:/Users/user_name/AppData/Roaming/Sublime Text 2/Packages/User' directory.
 <img src="./doc_image/sublime_sunippetter.gif" />
 
 ## History
+* version 0.0.5 : enable require 'filename' generate.
 * version 0.0.4 : enable do-block, brace-block generate.
 * version 0.0.3 : question can use. for ex 'blank?'.
 * version 0.0.1 : first release.
