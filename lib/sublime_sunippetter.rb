@@ -99,7 +99,7 @@ require '<%= require_file %>'
     def get_args_names(method)
       args = method.args
       args_names = ' '
-      args.each_with_index {|a, i|args_names << "${#{i + 1}:#{a}}, "}
+      args.each_with_index { |a, i|args_names << "${#{i + 1}:#{a}}, " }
       args_names.chop!.chop! unless args.empty?
     end
 
