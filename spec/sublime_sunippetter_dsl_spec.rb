@@ -70,8 +70,8 @@ describe SublimeSunippetter::Dsl do
   cases_add_requires = [
     {
       case_no: 1,
-      require_files: ['hoge', 'hige'],
-      expecteds: ['hoge', 'hige']
+      require_files: %w(hoge hige),
+      expecteds: %w(hoge hige)
     },
   ]
 

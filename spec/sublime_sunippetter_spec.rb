@@ -5,8 +5,8 @@ require 'spec_helper'
 describe SublimeSunippetter::Core do
   cases_init = [
     {
-    case_no: 1,
-    expected: SublimeSunippetter::Core::DEFINE_FILE_TEMPLATE
+      case_no: 1,
+      expected: SublimeSunippetter::Core::DEFINE_FILE_TEMPLATE
     },
   ]
 
@@ -75,6 +75,6 @@ add_requires 'hoge', 'hige'
   end
 
   after(:each) do
-    File.delete("#{SublimeSunippetter::Core::DEFINE_FILE}") if File.exists?("#{SublimeSunippetter::Core::DEFINE_FILE}")
+    File.delete("#{SublimeSunippetter::Core::DEFINE_FILE}") if File.exist?("#{SublimeSunippetter::Core::DEFINE_FILE}")
   end
 end

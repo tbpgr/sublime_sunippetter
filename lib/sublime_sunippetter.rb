@@ -86,7 +86,7 @@ require '<%= require_file %>'
 
     private
     def read_sunippetdefine
-      unless File.exists? "./#{DEFINE_FILE}"
+      unless File.exist? "./#{DEFINE_FILE}"
         fail SunippetterError, "you must create #{DEFINE_FILE}. manual or 'suni init' command"
       end
       File.read("./#{DEFINE_FILE}")
