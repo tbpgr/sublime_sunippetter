@@ -16,7 +16,7 @@ module SublimeSunippetter
 
     # add sunippet information
     def add(method_name, *args)
-      return if has_error?(method_name, *args)
+      return if error?(method_name, *args)
       has_do_block = args.include?('block@d')
       has_brace_block = args.include?('block@b')
       args = delete_block_args args
@@ -48,7 +48,7 @@ module SublimeSunippetter
 
     private
 
-    def has_error?(method_name, *args)
+    def error?(method_name, *args)
       return true if method_name.nil?
       return true if method_name.empty?
       return true if args.each.include?(nil)
