@@ -3,6 +3,7 @@ lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'sublime_sunippetter/version'
 
+# rubocop:disable LineLength
 Gem::Specification.new do |spec|
   spec.name          = 'sublime_sunippetter'
   spec.version       = SublimeSunippetter::VERSION
@@ -25,3 +26,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec', '~> 2.14.1'
   spec.add_development_dependency 'simplecov', '~> 0.8.2'
 end
+# rubocop:enable LineLength

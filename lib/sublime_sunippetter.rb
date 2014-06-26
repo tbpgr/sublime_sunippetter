@@ -74,13 +74,16 @@ require '<%= require_file %>'
           get_brace_block(m),
           dsl._scope
         )
-        filename = "#{dsl._output_path}/#{m.method_name.to_s.tr('?', '')}.sublime-snippet"
+        basename = "#{dsl._output_path}/#{m.method_name.to_s.tr('?', '')}"
+        filename = "#{basename}.sublime-snippet"
         File.open(filename, 'w:UTF-8') { |f|f.puts snippet }
       end
 
       dsl.requires.each do |r|
         require_snippet = get_require_snippet(r, dsl._scope)
-        File.open("require_#{r}.sublime-snippet", 'w:UTF-8') { |f|f.puts require_snippet }
+        File.open("require_#{r}.sublime-snippet", 'w:UTF-8') do |f|
+          f.puts require_snippet
+        end
       end
     end
 
@@ -88,7 +91,7 @@ require '<%= require_file %>'
 
     def read_sunippetdefine
       unless File.exist? "./#{DEFINE_FILE}"
-        fail SunippetterError, "you must create #{DEFINE_FILE}. manual or 'suni init' command"
+        fail SunippetterError, "you must create #{DEFINE_FILE}. manual or 'suni init' command" # rubocop:disable LineLength
       end
       File.read("./#{DEFINE_FILE}")
     end

@@ -3,6 +3,7 @@ require_relative '../lib/sublime_sunippetter'
 require 'spec_helper'
 require 'target_method'
 
+# rubocop:disable LineLength
 describe SublimeSunippetter::Dsl do
   cases_add = [
     {
@@ -151,3 +152,4 @@ describe SublimeSunippetter::Dsl do
     end
   end
 end
+# rubocop:enable LineLength

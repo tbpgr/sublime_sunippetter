@@ -2,6 +2,7 @@
 require_relative '../lib/sublime_sunippetter'
 require 'spec_helper'
 
+# rubocop:disable LineLength
 describe SublimeSunippetter::Core do
   cases_init = [
     {
@@ -78,3 +79,4 @@ add_requires 'hoge', 'hige'
     File.delete("#{SublimeSunippetter::Core::DEFINE_FILE}") if File.exist?("#{SublimeSunippetter::Core::DEFINE_FILE}")
   end
 end
+# rubocop:enable LineLength
