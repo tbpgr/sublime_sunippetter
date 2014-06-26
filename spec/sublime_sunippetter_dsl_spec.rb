@@ -117,7 +117,7 @@ describe SublimeSunippetter::Dsl do
       dsl.scope c[:scope]
 
       # then
-      expect(dsl._scope).to eq(c[:expected])
+      expect(dsl.scope_value).to eq(c[:expected])
     end
   end
 
@@ -148,7 +148,7 @@ describe SublimeSunippetter::Dsl do
       dsl.output_path c[:output_path]
 
       # then
-      expect(dsl._output_path).to eq(c[:expected])
+      expect(dsl.output_path_value).to eq(c[:expected])
     end
   end
 end

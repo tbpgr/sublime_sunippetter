@@ -2,6 +2,7 @@
 require 'sublime_sunippetter/version'
 require 'erb'
 require 'sublime_sunippetter_dsl'
+require 'sublime_sunipetter_templates'
 
 module SublimeSunippetter
   # SublimeSunippetter Core
@@ -9,56 +10,11 @@ module SublimeSunippetter
     # Sunippetdefine file name.
     DEFINE_FILE = 'Sunippetdefine'
 
-    # Sunippetdefine file template
-    DEFINE_FILE_TEMPLATE = <<-EOS
-# encoding: utf-8
-
-# set output path. default=current directory
-# output_path 'C:/Users/user_name/AppData/Roaming/Sublime Text 2/Packages/User'
-
-# set sunippet scope. default=source.ruby
-# scope "source.ruby"
-
-# if two args method
-# add :hoge, :args1, :args2
-# if no args method
-# add :hige
-# if two args method and do-block
-# add :hoge1, :args1, :args2, "block@d"
-# if two args method and brace-block
-# add :hoge2, :args1, :args2, "block@b"
-
-# require snippet
-# add_requires 'file1', 'file2'
-    EOS
-
-    # sublime sunippet template
-    SUNIPPET_TEMPLATE = <<-EOS
-<snippet>
-  <content><![CDATA[
-<%= method_name %><%= args_names %><%= do_block %><%= brace_block %>
-]]></content>
-  <tabTrigger><%= method_name %></tabTrigger>
-  <scope><%= scope%></scope>
-  <description><%= method_name %> method</description>
-</snippet>
-    EOS
-
-    # sublime sunippet require template
-    REQUIRE_SUNIPPET_TEMPLATE = <<-EOS
-<snippet>
-  <content><![CDATA[
-require '<%= require_file %>'
-]]></content>
-  <tabTrigger>require <%= require_file %></tabTrigger>
-  <scope><%= scope%></scope>
-  <description>require <%= require_file %></description>
-</snippet>
-    EOS
-
     # generate Sunippetdefine to current directory.
     def init
-      File.open("./#{DEFINE_FILE}", 'w') { |f|f.puts DEFINE_FILE_TEMPLATE }
+      File.open("./#{DEFINE_FILE}", 'w') do |f|
+        f.puts SublimeSunippetter::Templates::DEFINE_FILE_TEMPLATE
+      end
     end
 
     # generate sublime text2 sunippets from Sunippetdefine
@@ -80,7 +36,7 @@ require '<%= require_file %>'
     end
 
     def get_snippet(method_name, args_names, do_block, brace_block, scope)
-      ERB.new(SUNIPPET_TEMPLATE).result(binding)
+      ERB.new(SublimeSunippetter::Templates::SUNIPPET_TEMPLATE).result(binding)
     end
 
     def get_args_names(method)
@@ -105,7 +61,7 @@ end
     end
 
     def get_require_snippet(require_file, scope)
-      ERB.new(REQUIRE_SUNIPPET_TEMPLATE).result(binding)
+      ERB.new(SublimeSunippetter::Templates::REQUIRE_SUNIPPET_TEMPLATE).result(binding) # rubocop:disable LineLength
     end
 
     def output_methods(dsl)
@@ -115,20 +71,20 @@ end
           get_args_names(m) ,
           get_do_block(m).chop,
           get_brace_block(m),
-          dsl._scope
+          dsl.scope_value
         )
         File.open(method_file_path(dsl, m), 'w:UTF-8') { |f|f.puts snippet }
       end
     end
 
     def method_file_path(dsl, method)
-      basename = "#{dsl._output_path}/#{method.method_name.to_s.tr('?', '')}"
+      basename = "#{dsl.output_path_value}/#{method.method_name.to_s.tr('?', '')}" # rubocop:disable LineLength
       "#{basename}.sublime-snippet"
     end
 
     def output_requires(dsl)
       dsl.requires.each do |r|
-        require_snippet = get_require_snippet(r, dsl._scope)
+        require_snippet = get_require_snippet(r, dsl.scope_value)
         File.open("require_#{r}.sublime-snippet", 'w:UTF-8') do |f|
           f.puts require_snippet
         end

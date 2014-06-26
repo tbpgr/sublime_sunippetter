@@ -7,7 +7,7 @@ describe SublimeSunippetter::Core do
   cases_init = [
     {
       case_no: 1,
-      expected: SublimeSunippetter::Core::DEFINE_FILE_TEMPLATE
+      expected: SublimeSunippetter::Templates::DEFINE_FILE_TEMPLATE
     }
   ]
 

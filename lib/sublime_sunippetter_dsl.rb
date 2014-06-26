@@ -4,13 +4,13 @@ require 'target_method'
 module SublimeSunippetter
   # Dsl. this is dsl for Sunippetdefine.
   class Dsl
-    attr_accessor :target_methods, :_scope, :_output_path, :requires
+    attr_accessor :target_methods, :scope_value, :output_path_value, :requires
 
     # init default values
     def initialize
       @target_methods = []
-      @_scope = 'source.ruby'
-      @_output_path = './'
+      @scope_value = 'source.ruby'
+      @output_path_value = './'
       @requires = []
     end
 
@@ -33,17 +33,17 @@ module SublimeSunippetter
     end
 
     # set sunippet scope
-    def scope(_scope)
-      return if _scope.nil?
-      return if _scope.empty?
-      @_scope = _scope
+    def scope(value)
+      return if value.nil?
+      return if value.empty?
+      @scope_value = value
     end
 
     # set sunippet output path
-    def output_path(_output_path)
-      return if _output_path.nil?
-      return if _output_path.empty?
-      @_output_path = _output_path
+    def output_path(value)
+      return if value.nil?
+      return if value.empty?
+      @output_path_value = value
     end
 
     private
