@@ -66,25 +66,8 @@ require '<%= require_file %>'
       sunippet_define = read_sunippetdefine
       dsl = Dsl.new
       dsl.instance_eval sunippet_define
-      dsl.target_methods.each do |m|
-        snippet = get_snippet(
-          m.method_name ,
-          get_args_names(m) ,
-          get_do_block(m).chop,
-          get_brace_block(m),
-          dsl._scope
-        )
-        basename = "#{dsl._output_path}/#{m.method_name.to_s.tr('?', '')}"
-        filename = "#{basename}.sublime-snippet"
-        File.open(filename, 'w:UTF-8') { |f|f.puts snippet }
-      end
-
-      dsl.requires.each do |r|
-        require_snippet = get_require_snippet(r, dsl._scope)
-        File.open("require_#{r}.sublime-snippet", 'w:UTF-8') do |f|
-          f.puts require_snippet
-        end
-      end
+      output_methods(dsl)
+      output_requires(dsl)
     end
 
     private
@@ -123,6 +106,33 @@ end
 
     def get_require_snippet(require_file, scope)
       ERB.new(REQUIRE_SUNIPPET_TEMPLATE).result(binding)
+    end
+
+    def output_methods(dsl)
+      dsl.target_methods.each do |m|
+        snippet = get_snippet(
+          m.method_name ,
+          get_args_names(m) ,
+          get_do_block(m).chop,
+          get_brace_block(m),
+          dsl._scope
+        )
+        File.open(method_file_path(dsl, m), 'w:UTF-8') { |f|f.puts snippet }
+      end
+    end
+
+    def method_file_path(dsl, method)
+      basename = "#{dsl._output_path}/#{method.method_name.to_s.tr('?', '')}"
+      "#{basename}.sublime-snippet"
+    end
+
+    def output_requires(dsl)
+      dsl.requires.each do |r|
+        require_snippet = get_require_snippet(r, dsl._scope)
+        File.open("require_#{r}.sublime-snippet", 'w:UTF-8') do |f|
+          f.puts require_snippet
+        end
+      end
     end
   end
 
