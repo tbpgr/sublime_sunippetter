@@ -42,7 +42,7 @@ describe SublimeSunippetter::Dsl do
       params: [:hoge, '', :hage],
       expecteds: '',
       invalid?: true
-    },
+    }
   ]
 
   cases_add.each do |c|
@@ -73,7 +73,7 @@ describe SublimeSunippetter::Dsl do
       case_no: 1,
       require_files: %w(hoge hige),
       expecteds: %w(hoge hige)
-    },
+    }
   ]
 
   cases_add_requires.each do |c|
@@ -105,7 +105,7 @@ describe SublimeSunippetter::Dsl do
       case_no: 3,
       scope: '',
       expected: 'source.ruby'
-    },
+    }
   ]
 
   cases_scope.each do |c|
@@ -136,7 +136,7 @@ describe SublimeSunippetter::Dsl do
       case_no: 3,
       output_path: '',
       expected: './'
-    },
+    }
   ]
 
   cases_output_path.each do |c|

@@ -8,7 +8,7 @@ describe SublimeSunippetter::Core do
     {
       case_no: 1,
       expected: SublimeSunippetter::Core::DEFINE_FILE_TEMPLATE
-    },
+    }
   ]
 
   cases_init.each do |c|
@@ -47,8 +47,8 @@ add_requires 'hoge', 'hige'
         'hoge2.sublime-snippet',
         'hoge3.sublime-snippet',
         'require_hoge.sublime-snippet',
-        'require_hige.sublime-snippet',
-      ],
+        'require_hige.sublime-snippet'
+      ]
     }
   ]
 
