@@ -35,9 +35,11 @@ module SublimeSunippetter
       File.read("./#{DEFINE_FILE}")
     end
 
+    # rubocop:disable UnusedMethodArgument
     def get_snippet(method_name, args_names, do_block, brace_block, scope)
       ERB.new(SublimeSunippetter::Templates::SUNIPPET_TEMPLATE).result(binding)
     end
+    # rubocop:enable UnusedMethodArgument
 
     def get_args_names(method)
       args = method.args
@@ -60,9 +62,11 @@ end
       ' { |${9:args}|${0:block} }'
     end
 
+    # rubocop:disable LineLength, UnusedMethodArgument
     def get_require_snippet(require_file, scope)
-      ERB.new(SublimeSunippetter::Templates::REQUIRE_SUNIPPET_TEMPLATE).result(binding) # rubocop:disable LineLength
+      ERB.new(SublimeSunippetter::Templates::REQUIRE_SUNIPPET_TEMPLATE).result(binding)
     end
+    # rubocop:enable LineLength, UnusedMethodArgument
 
     def output_methods(dsl)
       dsl.target_methods.each do |m|
